@@ -145,14 +145,22 @@ class MJ_Redirect_Spaghetti {
             }
         }
         
-		// A redirect does exist, so print
+			// A redirect does exist, so print
 		if (isset($retVal['Location'])){
 			 echo '<li>';
-		     echo $url .' &raquo; <strong>'. $retVal['Location'] .'</strong>';
-		     $this->map_redirects( $retVal['Location'] );
+		     echo $url .' ----> <strong>'. $retVal['Location'] .'</strong>';
+		     echo '<br />( '.$fields[0] .' )';
 		     echo '</li>';
+
+		     $this->map_redirects( $retVal['Location'] );
+
 		} else {
-		     echo "<li> <strong> Final destination:  $url </strong> </li>";
+		     echo '<li>';
+		     echo "<strong> Final destination:  $url </strong> ";
+		     if ( $fields[0] ){
+		     	echo '<br />( '.$fields[0] .' )';
+		     }
+		     echo '</li>';
 		}
 		curl_close($ch);
 		
